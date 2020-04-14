@@ -1,18 +1,28 @@
 import React from 'react';
 import './App.css';
-import { increment, decrement } from './actions';
+import { increment, decrement, plusten } from './actions';
 import { useSelector, useDispatch } from 'react-redux';
+import {
+  BrowserRouter,
+  Route,
+  Switch,
+  } from 'react-router-dom';
+
+import Home from './Pages/Home';
+import About from './Pages/About';
 
 function App() {
   const counter = useSelector(state => state.counter);
   const dispatch = useDispatch();
   
   return (
-    <div className="App">
-      <h1>カウンター {counter}</h1>
-      <button onClick={() => dispatch(increment())}>+1</button>
-      <button onClick={() => dispatch(decrement())}>-1</button>
-    </div>
+
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/about" component={About} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
